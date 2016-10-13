@@ -4,14 +4,32 @@ void Navigator::getRandomState()
 {
 
 }
-void Navigator::getNearestNode()
+void Navigator::nodesDistanceToRandNode()
 {
-
-
+	for (int i = 0; i < nodesList.size(); i++)
+	{
+		nodesList[i].setDistanceToRandNode(sqrt(pow(nodesList[i].getX() - randomNode.getX(), 2) + pow(nodesList[i].getY() - randomNode.getY(), 2)));
+	}
+}
+Nodes Navigator::getNearestNode()
+{
+	float minDistance = sqrt(pow(nodesList[0].getX() - randomNode.getX(), 2) + pow(nodesList[0].getY() - randomNode.getY(), 2));
+	for (int i = 1; i < nodesList.size(); i++)
+	{
+		float tempDistance = sqrt(pow(nodesList[i].getX() - randomNode.getX(), 2) + pow(nodesList[i].getY() - randomNode.getY(), 2));
+		if (tempDistance < minDistance)
+		{
+			minDistance = tempDistance;
+		}
+		if (nodesList[i].getDistanceToRandNode() == minDistance)
+		{
+			return nodesList[i];
+		}
+	}
 }
 bool Navigator::isValidExpansion(Nodes Nearest,Nodes Random)
 {
-	this->nearestNode = Nearest;
+	this->nearestNode = Nearest;   //these 2 are having problem,they must be vice versa.
 	this->randomNode = Random;
 
 	if (this->nearestNode.getX() - this->randomNode.getX() > 0 && this->nearestNode.getY() - this->randomNode.getY() > 0)

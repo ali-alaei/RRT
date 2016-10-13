@@ -20,3 +20,11 @@ int Nodes::getY()
 {
 	return this->y;
 }
+float Nodes::getDistanceToRandNode()
+{
+	return this->distanceToRandNode;
+}
+void Nodes::setDistanceToRandNode(float distance)
+{
+	this->distanceToRandNode = distance;
+}

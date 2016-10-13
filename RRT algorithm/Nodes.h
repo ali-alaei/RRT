@@ -9,9 +9,12 @@ public:
 	void makeNodes();
 	int getX();
 	int getY();
+	float getDistanceToRandNode();
+	void setDistanceToRandNode(float);
 private:
 	int x;
 	int y;
+	float distanceToRandNode;
 };
 #endif
 

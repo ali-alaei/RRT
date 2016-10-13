@@ -1,6 +1,6 @@
 #ifndef NAVIGATOR_H
 #define NAVIGATOR_H
-
+#include <cmath>
 #include "Nodes.h"
 #include "Obstacles.h"
 #include <vector>
@@ -17,11 +17,12 @@ public:
 	Navigator();
 	~Navigator();
 	void getRandomState();
-	void getNearestNode();
+	Nodes getNearestNode();
 	bool isValidExpansion(Nodes,Nodes);
 	void goTowardsNode();
-private:
 
+private:
+	void nodesDistanceToRandNode();
 
 };
 #endif
