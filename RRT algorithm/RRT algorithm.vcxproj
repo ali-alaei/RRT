@@ -64,6 +64,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="main.cpp" />
     <ClCompile Include="Nodes.cpp" />
     <ClCompile Include="Obstacles.cpp" />
     <ClCompile Include="Navigator.cpp" />
