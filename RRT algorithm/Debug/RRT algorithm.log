@@ -1,16 +1,30 @@
-﻿Build started 10/13/2016 3:14:07 PM.
-     1>Project "D:\Git Projects\RRT\RRT algorithm\RRT algorithm.vcxproj" on node 2 (Build target(s)).
+﻿Build started 10/14/2016 13:15:09.
+     1>Project "D:\Projects\RRT\RRT algorithm\RRT algorithm.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt main.cpp
+         D:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt Navigator.cpp RRT.cpp main.cpp
+         RRT.cpp
+         Navigator.cpp
+     1>d:\projects\rrt\rrt algorithm\navigator.cpp(9): warning C4018: '<' : signed/unsigned mismatch
+     1>d:\projects\rrt\rrt algorithm\navigator.cpp(11): warning C4244: 'argument' : conversion from 'double' to 'float', possible loss of data
+     1>d:\projects\rrt\rrt algorithm\navigator.cpp(16): warning C4244: 'initializing' : conversion from 'double' to 'float', possible loss of data
+     1>d:\projects\rrt\rrt algorithm\navigator.cpp(17): warning C4018: '<' : signed/unsigned mismatch
+     1>d:\projects\rrt\rrt algorithm\navigator.cpp(19): warning C4244: 'initializing' : conversion from 'double' to 'float', possible loss of data
+     1>d:\projects\rrt\rrt algorithm\navigator.cpp(40): warning C4018: '<' : signed/unsigned mismatch
+     1>d:\projects\rrt\rrt algorithm\navigator.cpp(61): warning C4018: '<' : signed/unsigned mismatch
+     1>d:\projects\rrt\rrt algorithm\navigator.cpp(86): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+         Generating Code...
+     1>d:\projects\rrt\rrt algorithm\navigator.cpp(29): warning C4715: 'Navigator::getNearestNode' : not all control paths return a value
+         Skipping... (no relevant changes detected)
          main.cpp
        Link:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"D:\Git Projects\RRT\Debug\RRT algorithm.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"D:\Git Projects\RRT\Debug\RRT algorithm.pdb" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"D:\Git Projects\RRT\Debug\RRT algorithm.lib" /MACHINE:X86 Debug\main.obj
+         D:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"D:\Projects\RRT\Debug\RRT algorithm.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"D:\Projects\RRT\Debug\RRT algorithm.pdb" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"D:\Projects\RRT\Debug\RRT algorithm.lib" /MACHINE:X86 Debug\main.obj
          Debug\Nodes.obj
          Debug\Obstacles.obj
          Debug\Navigator.obj
-         RRT algorithm.vcxproj -> D:\Git Projects\RRT\Debug\RRT algorithm.exe
-     1>Done Building Project "D:\Git Projects\RRT\RRT algorithm\RRT algorithm.vcxproj" (Build target(s)).
+         Debug\RRT.obj
+         RRT algorithm.vcxproj -> D:\Projects\RRT\Debug\RRT algorithm.exe
+     1>Done Building Project "D:\Projects\RRT\RRT algorithm\RRT algorithm.vcxproj" (Build target(s)).
 
 Build succeeded.
 
-Time Elapsed 00:00:00.68
+Time Elapsed 00:00:01.34

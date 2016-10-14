@@ -19,7 +19,8 @@ public:
 	void getRandomState();
 	Nodes getNearestNode();
 	bool isValidExpansion(Nodes,Nodes);
-	void goTowardsNode();
+	void goTowardsNode(float);
+	void addNode(Nodes);
 
 private:
 	void nodesDistanceToRandNode();

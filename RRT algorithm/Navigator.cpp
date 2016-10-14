@@ -79,9 +79,18 @@ bool Navigator::isValidExpansion(Nodes Nearest,Nodes Random)
 	
 }
 
-void Navigator::goTowardsNode()
+void Navigator::goTowardsNode(float maxEdgeLength)
 {
+	float distance;
+	float d;
+	distance = sqrt(pow(nearestNode.getX() - randomNode.getX(), 2) + pow(nearestNode.getY() - randomNode.getY(), 2));
+	d = maxEdgeLength;
+	newNode.setX(nearestNode.getX() + d * ((randomNode.getX() - nearestNode.getX()) / distance));
+	newNode.setY(nearestNode.getY() + d * ((randomNode.getY() - nearestNode.getY()) / distance));
+}
 
+void Navigator::addNode(Nodes newNode)
+{
 
 }
 

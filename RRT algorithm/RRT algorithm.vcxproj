@@ -68,11 +68,13 @@
     <ClCompile Include="Nodes.cpp" />
     <ClCompile Include="Obstacles.cpp" />
     <ClCompile Include="Navigator.cpp" />
+    <ClCompile Include="RRT.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Nodes.h" />
     <ClInclude Include="Obstacles.h" />
     <ClInclude Include="Navigator.h" />
+    <ClInclude Include="RRT.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
