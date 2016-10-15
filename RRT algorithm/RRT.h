@@ -1,4 +1,6 @@
-#pragma once
+#ifndef RRT_H
+#define RRT_H
+
 #include "Navigator.h"
 
 class RRT
@@ -16,3 +18,4 @@ private:
 
 };
 
+#endif

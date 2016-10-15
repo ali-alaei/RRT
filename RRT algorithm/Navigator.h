@@ -1,9 +1,12 @@
 #ifndef NAVIGATOR_H
 #define NAVIGATOR_H
+
 #include <cmath>
 #include "Nodes.h"
 #include "Obstacles.h"
 #include <vector>
+
+#define baseSize 100
 
 class Navigator
 {
@@ -18,7 +21,7 @@ public:
 	~Navigator();
 	void getRandomState();
 	Nodes getNearestNode();
-	bool isValidExpansion(Nodes,Nodes);
+	bool isValidExpansion();
 	void goTowardsNode(float);
 	void addNode(Nodes);
 
