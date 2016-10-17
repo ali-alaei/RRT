@@ -3,20 +3,31 @@
 
 class Nodes
 {
+
 public:
-	Nodes();
+
+	Nodes(int, int, Nodes*);
 	~Nodes();
-	void makeNodes();
+
+	//setter and getter
 	int getX();
 	int getY();
-	void setX(float);
-	void setY(float);
-	float getDistanceToRandNode();
-	void setDistanceToRandNode(float);
+	Nodes* getFatherNode();
+	void setFatherNode(Nodes*);
+	void setX(int);
+	void setY(int);
+	bool getIsReached();
+	void setIsReached(bool);
+	//void makeNode();
+	//float getDistanceToRandNode();
+	//void setDistanceToRandNode(float);
 private:
-	float x;
-	float y;
-	float distanceToRandNode;
+	
+	bool isReached;
+	Nodes* fatherNode;
+	int x;
+	int y;
+	int distanceToRandNode;
 };
 #endif
 
