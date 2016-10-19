@@ -16,20 +16,17 @@ RRT::~RRT()
 
 }
 
-void RRT::fillObstacles()
-{
-	///build some obstacles randomize 
-}
-
 void RRT::fillDestAndStart()
 {
 
 }
 
-void RRT::Navigate()
+void RRT::Navigate(std::vector<Nodes*>&pathList)
 {
+	pathList.clear();
 	Navigator navigate(this->start, this->dest);
 	//fillObstacles();
+	navigate.buildObstacles(1);
 
 	while (true)
 	{
@@ -37,26 +34,21 @@ void RRT::Navigate()
 		//std::cout << "F";
 		navigate.getNearestNode();
 	//	std::cout << "H";
-
-		//if (navigate.isValidExpansion())
-		//{
-			//std::cout << "E";
+		if (navigate.isValidExpansion())
+		{
+		//	std::cout << "\n\nCHECK\n\n";
 			navigate.addNode();
 			navigate.goTowardsNode(robotPower);
 			
-			//std::cout << "W";
 			//navigate.checkValues();
 
 			if (navigate.isGoalReached())
 			{
 				navigate.setDestFather();
-				//std::cout << "JOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOON";
-				navigate.reverse();
+				navigate.reverse(pathList);
 				break;
 			}
-		//}
-		
-
+		}
 	}
 
 }

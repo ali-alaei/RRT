@@ -5,19 +5,18 @@ class Obstacles
 {
 
 public:
-	
-	Obstacles();
+
+	Obstacles(int ,int ,int);
 	~Obstacles();
-	void makeObstacles();
-	float getX();
-	float getY();
-	float getRadius();
+	int getX();
+	int getY();
+	int getRadius();
 
 private:
 	
-	float x;
-	float radius;
-	float y;
+	int x;
+	int radius;
+	int y;
 };
 #endif
 

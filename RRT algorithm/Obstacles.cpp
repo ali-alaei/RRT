@@ -1,29 +1,28 @@
 #include"Obstacles.h"
-Obstacles::Obstacles()
+
+Obstacles::Obstacles(int xPos,int yPos,int radius)
 {
+	this->x = xPos;
+	this->y = yPos;
+	this->radius = radius;
 }
 
 Obstacles::~Obstacles()
 {
-}
-
-void Obstacles::makeObstacles()
-{
-
 
 }
 
-float Obstacles::getX()
+int Obstacles::getX()
 {
 	return this->x;
 }
 
-float Obstacles::getY()
+int Obstacles::getY()
 {
 	return this->y;
 }
 
-float Obstacles::getRadius()
+int Obstacles::getRadius()
 {
 	return this->radius;
 }

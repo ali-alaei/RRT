@@ -19,7 +19,7 @@ class Navigator
 	Nodes* flagNode;
 	
 	std::vector	<Nodes*> nodesList;
-	std::vector	<Obstacles> obstaclesList;
+	std::vector	<Obstacles*> obstaclesList;
 	std::vector <Nodes*> pathList;
 
 public:
@@ -28,9 +28,12 @@ public:
 	bool checkIfNewNodeIsNearDestination(Nodes*,Nodes*,float);
 	void checkValues();
 	void setDestFather();
-	void reverse();
+	void reverse(std::vector<Nodes*>&);
+	bool obstacleIsBetweenRandomAndNearestNodes(Obstacles*);
+
 	void getRandomState();
 	void getNearestNode();
+	void buildObstacles(int);
 	bool isValidExpansion();
 	void goTowardsNode(int);
 	void addNode();

@@ -29,6 +29,7 @@ void Navigator::getRandomState()
 	int xRand = rand() % baseSize;
 	int yRand = rand() % baseSize;
 
+
 	for (int i = 0; i < nodesList.size(); i++)
 	{
 		if (xRand == nodesList[i]->getX() && yRand == nodesList[i]->getY())
@@ -38,14 +39,16 @@ void Navigator::getRandomState()
 			i = 0; 
 		}
 	}
+
 	for (int j = 0; j < obstaclesList.size(); j++)
 	{
-		if (xRand < obstaclesList[j].getX() + obstaclesList[j].getRadius() &&
-			xRand > obstaclesList[j].getX() - obstaclesList[j].getRadius())
+		if (xRand <= obstaclesList[j]->getX() + obstaclesList[j]->getRadius() &&
+			xRand >= obstaclesList[j]->getX() - obstaclesList[j]->getRadius())
 		{
-			if (yRand < obstaclesList[j].getY() + obstaclesList[j].getRadius() &&
-				yRand > obstaclesList[j].getY() - obstaclesList[j].getRadius())
+			if (yRand <= obstaclesList[j]->getY() + obstaclesList[j]-> getRadius() &&
+				yRand >= obstaclesList[j]->getY() - obstaclesList[j]-> getRadius())
 			{
+				//cout << "QQQQQQQQ";
 				xRand = rand() %  baseSize;
 				yRand = rand() %  baseSize;
 				j = 0;
@@ -89,54 +92,62 @@ void Navigator::getNearestNode()
 
 }
 
-
+//in tabe kasif zade shode 
+//bayad dorost she
 bool Navigator::isValidExpansion()
 {
-	if (this->nearestNode->getX() - this->randomNode->getX() > 0 && this->nearestNode->getY() - this->randomNode->getY() > 0)
+	float fasele=0;
+	float m = 0;
+	float zaribeX;
+	float c;
+
+
+	if (randomNode->getX() - nearestNode->getX() == 0)
 	{
-		for (int i = this->nearestNode->getX(), j = this->nearestNode->getY(); i < this->randomNode->getX(), j < this->randomNode->getY();
-			i += (this->randomNode->getX() / 100), j += (this->randomNode->getY() / 100))
-		{
-			for (int k = 0; k < obstaclesList.size(); k++)
-			{
-				if (obstaclesList[k].getX() + obstaclesList[k].getRadius() < i &&
-					obstaclesList[k].getX() - obstaclesList[k].getRadius() > i)
-				{
-					if (obstaclesList[k].getY() + obstaclesList[k].getRadius() < j &&
-						obstaclesList[k].getY() - obstaclesList[k].getRadius() > j)
-					{
-						return false;
-					}
-				}
-
-			}
-		}
+		c = 0;
+		m = 0;
+		zaribeX = 0;
 	}
-
 	else
 	{
-		for (int i = this->nearestNode->getX(), j = this->nearestNode->getY(); i < this->randomNode->getX(), j < this->randomNode->getY();
-			i -= (this->randomNode->getY() / 100), j -= (this->randomNode->getY() / 100))
-		{
-			for (int k = 0; k < obstaclesList.size(); k++)
-			{
-				if (obstaclesList[k].getX() + obstaclesList[k].getRadius() < i &&
-					obstaclesList[k].getX() - obstaclesList[k].getRadius() > i)
-				{
-					if (obstaclesList[k].getY() + obstaclesList[k].getRadius() < j &&
-						obstaclesList[k].getY() - obstaclesList[k].getRadius() > j)
-					{
-						return false;
-					}
-				}
-
-			}
-		}
-
+		m = (randomNode->getY() - nearestNode->getY()) / (randomNode->getX() - nearestNode->getX());
+		zaribeX = -1 * m;
+		c = m * randomNode->getX() - randomNode->getY();
 	}
 
-	return true;
 
+	for (int i = 0; i < obstaclesList.size(); i++)
+	{
+		if (obstacleIsBetweenRandomAndNearestNodes(obstaclesList[i]))
+		{
+			fasele = abs((zaribeX * obstaclesList[i]->getX()) + (obstaclesList[i]->getY()) + c) / sqrt(pow(zaribeX, 2) + 1);
+			//momas ro ham barkhord gereftam
+			if (fasele <= obstaclesList[i]->getRadius())
+			{
+			//	cout << "\n\nNA\n\n";
+
+		//		cout << "\n \n \nFASELE :" << fasele << "\n \n \n";
+				
+		//		std::cout << "random : " << (randomNode != nullptr) << endl;
+
+			//	cout << "X: " << randomNode->getX() << "  Y:   " << randomNode->getY() << endl;
+
+			//	std::cout << "nearest : " << (nearestNode != nullptr) << endl;
+
+			//	cout << "X: " << nearestNode->getX() << "  Y:   " << nearestNode->getY() << endl;
+
+				return false;
+			}
+		}
+	}
+//	cout << "\n \n \nM :" << m << "\n \n \n";
+	//cout << "\n \n \nC :" << c << "\n \n \n";
+	//cout << "\n \n \nzaribeX :" << zaribeX << "\n \n \n";
+	//cout << "\n \n \nFASELE :" << fasele << "\n \n \n";
+
+	//cout <<"\n \n \nFASELE :"<< fasele<<"\n \n \n";
+
+	return true;
 }
 
 void Navigator::goTowardsNode(int maxEdgeLength)
@@ -147,6 +158,8 @@ void Navigator::goTowardsNode(int maxEdgeLength)
 	distance = sqrt(pow(nearestNode->getX() - randomNode->getX(), 2) + pow(nearestNode->getY() - randomNode->getY(), 2));
 	d = maxEdgeLength;
 	//cout << "\nRRRRRRRRRRR\n";
+	if (distance == 0)
+		distance = 1;
 	newNode->setX(nearestNode->getX() + d * ((randomNode->getX() - nearestNode->getX()) / distance));
 	//cout << "\nDDDDDDD\n";
 	newNode->setY(nearestNode->getY() + d * ((randomNode->getY() - nearestNode->getY()) / distance));
@@ -175,7 +188,7 @@ bool Navigator::isGoalReached()
 	//}
 }
 
-void Navigator::reverse()
+void Navigator::reverse(std::vector<Nodes*>&retrurnedPathList)
 {
 	cout << "\nReverse\n";
 	flagNode = destNode;
@@ -189,7 +202,19 @@ void Navigator::reverse()
 	}
 
 	pathList.push_back(startNode);
+
 	checkValues();
+
+	retrurnedPathList = pathList;
+}
+
+void Navigator::buildObstacles(int obstaclesNumber)
+{
+		this->obstaclesList.push_back(new Obstacles(2,1,1));
+		this->obstaclesList.push_back(new Obstacles(45, 23, 6));
+		this->obstaclesList.push_back(new Obstacles(50, 50, 1));
+		this->obstaclesList.push_back(new Obstacles(10, 12, 2));
+		this->obstaclesList.push_back(new Obstacles(70, 32, 3));
 
 }
 
@@ -211,12 +236,20 @@ void Navigator::checkValues()
 		cout << "X : " << pathList[i]->getX() << "    Y:    " << pathList[i]->getY() << endl;
 	}
 
+	for (int i = 0; i < obstaclesList.size(); i++)
+	{
+		cout << "\n OX : " << obstaclesList[i]->getX() << "    OY:    " << obstaclesList[i]->getY() << endl;
+	}
+
+	
 	std::cout << "random : " << (randomNode != nullptr)<<endl;
 	 
 	cout << "X: " << randomNode->getX() << "  Y:   " << randomNode->getY()<<endl;
 	
 	std::cout << "nearest : " << (nearestNode != nullptr) << endl;
 	
+	cout << "X: " << nearestNode->getX() << "  Y:   " << nearestNode->getY() << endl;
+
 	std::cout << "new  : " << (newNode != nullptr) << endl;
 	
 	cout << "X: " << newNode->getX() << "  Y:   " << newNode->getY() << endl;
@@ -237,8 +270,18 @@ void Navigator::setDestFather()
 	this->destNode->setFatherNode(newNode);
 }
 
+bool Navigator::obstacleIsBetweenRandomAndNearestNodes(Obstacles* T)
+{
+	if (T->getX() < randomNode->getX() && T->getX() > nearestNode->getX())
+		if (T->getY() < randomNode->getY() && T->getY() > nearestNode->getY())
+			return true;
+	
+	return false;
+}
 
-//start Node Father darad ke nabayad dashte bashe
-//dest node Fatheresh akharesh nabood mishe
+
+//start Node Father darad ke nabayad dashte bashe  ok
+//dest node Fatheresh akharesh nabood mishe  ok
 //int kardam hamaro
-//peyda mikone
+//peyda mikone   ok
+//list node ha daghoon shode (chert o pert mide vali path okeye)

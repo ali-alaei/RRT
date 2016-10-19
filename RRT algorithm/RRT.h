@@ -9,9 +9,8 @@ public:
 	RRT(Nodes*, Nodes*, int);
 	~RRT();
 
-	void fillObstacles();
 	void fillDestAndStart();
-	void Navigate();
+	void Navigate(std::vector<Nodes*>&);
 	
 
 private:
