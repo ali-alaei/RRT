@@ -10,14 +10,13 @@ public:
 	~RRT();
 
 	void fillDestAndStart();
-	void Navigate(std::vector<Nodes*>&);
+	void Navigate(std::vector<Nodes*>&, std::vector<Nodes*>&, std::vector<Obstacles*>&);
 	
 
 private:
 	Nodes* start;
 	Nodes* dest;
 	int robotPower;
-//Navigator navigate(Nodes* , Nodes*);
 
 };
 

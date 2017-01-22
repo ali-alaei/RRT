@@ -26,17 +26,18 @@ public:
 	Navigator(Nodes* start,Nodes* dest);
 	~Navigator();
 	bool checkIfNewNodeIsNearDestination(Nodes*,Nodes*,float);
-	void checkValues();
+
 	void setDestFather();
 	void reverse(std::vector<Nodes*>&);
 	bool obstacleIsBetweenRandomAndNearestNodes(Obstacles*);
 
 	void getRandomState();
 	void getNearestNode();
-	void buildObstacles(int);
+	void buildObstacles(int, std::vector<Obstacles*>&);
 	bool isValidExpansion();
-	void goTowardsNode(int);
-	void addNode();
+	bool isValidExpansion2();
+	bool goTowardsNode(int);
+	void addNode(std::vector<Nodes*>&);
 	bool isGoalReached();
 
 private:

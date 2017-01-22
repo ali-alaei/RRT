@@ -18,11 +18,6 @@ bool Nodes::getIsReached()
 	return isReached;
 }
 
-//void Nodes::makeNode()
-//{
-//
-//}
-
 int Nodes::getX()
 {
 	return this->x;
@@ -59,15 +54,4 @@ void Nodes::setY(int y)
 {
 	this->y = y;
 }
-
-/*float Nodes::getDistanceToRandNode()
-{
-	return this->distanceToRandNode;
-}
-
-void Nodes::setDistanceToRandNode(float distance)
-{
-	this->distanceToRandNode = distance;
-}
-*/
 

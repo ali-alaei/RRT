@@ -1,0 +1,38 @@
+﻿Build started 1/16/2017 2:15:14 PM.
+     1>Project "D:\Git Projects\RRT\RRT algorithm\RRT algorithm.vcxproj" on node 2 (Build target(s)).
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I"D:\Git Projects\RRT\SFML-2.4.0\include" /Zi /nologo /W3 /WX- /sdl /O2 /Oi /Oy- /GL /D _MBCS /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Release\\" /Fd"Release\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt Graphic.cpp Navigator.cpp Nodes.cpp RRT.cpp main.cpp
+         Graphic.cpp
+     1>Graphic.cpp(19): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>Graphic.cpp(24): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>Graphic.cpp(30): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+         Navigator.cpp
+     1>Navigator.cpp(33): warning C4018: '<' : signed/unsigned mismatch
+     1>Navigator.cpp(43): warning C4018: '<' : signed/unsigned mismatch
+     1>Navigator.cpp(69): warning C4244: 'initializing' : conversion from 'double' to 'int', possible loss of data
+     1>Navigator.cpp(72): warning C4018: '<' : signed/unsigned mismatch
+     1>Navigator.cpp(75): warning C4244: 'initializing' : conversion from 'double' to 'int', possible loss of data
+     1>Navigator.cpp(89): warning C4018: '<' : signed/unsigned mismatch
+     1>Navigator.cpp(114): warning C4244: '=' : conversion from 'int' to 'float', possible loss of data
+     1>Navigator.cpp(120): warning C4018: '<' : signed/unsigned mismatch
+     1>Navigator.cpp(141): warning C4244: '=' : conversion from 'double' to 'int', possible loss of data
+     1>Navigator.cpp(146): warning C4018: '<' : signed/unsigned mismatch
+         Nodes.cpp
+         RRT.cpp
+         main.cpp
+     1>main.cpp(13): warning C4244: 'argument' : conversion from 'time_t' to 'unsigned int', possible loss of data
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"D:\Git Projects\RRT\Release\RRT algorithm.exe" /NOLOGO /LIBPATH:"D:\Git Projects\RRT\SFML-2.4.0\lib" "sfml-graphics.lib" "sfml-window.lib" "sfml-system.lib" kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"D:\Git Projects\RRT\Release\RRT algorithm.pdb" /OPT:REF /OPT:ICF /LTCG /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"D:\Git Projects\RRT\Release\RRT algorithm.lib" /MACHINE:X86 /SAFESEH Release\Graphic.obj
+         Release\main.obj
+         Release\Nodes.obj
+         Release\Obstacles.obj
+         Release\Navigator.obj
+         Release\RRT.obj
+         Generating code
+         Finished generating code
+         RRT algorithm.vcxproj -> D:\Git Projects\RRT\Release\RRT algorithm.exe
+     1>Done Building Project "D:\Git Projects\RRT\RRT algorithm\RRT algorithm.vcxproj" (Build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:03.09

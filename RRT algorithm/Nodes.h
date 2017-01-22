@@ -9,7 +9,6 @@ public:
 	Nodes(int, int, Nodes*);
 	~Nodes();
 
-	//setter and getter
 	int getX();
 	int getY();
 	Nodes* getFatherNode();
@@ -18,9 +17,6 @@ public:
 	void setY(int);
 	bool getIsReached();
 	void setIsReached(bool);
-	//void makeNode();
-	//float getDistanceToRandNode();
-	//void setDistanceToRandNode(float);
 private:
 	
 	bool isReached;

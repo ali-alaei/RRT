@@ -48,7 +48,6 @@ void Navigator::getRandomState()
 			if (yRand <= obstaclesList[j]->getY() + obstaclesList[j]-> getRadius() &&
 				yRand >= obstaclesList[j]->getY() - obstaclesList[j]-> getRadius())
 			{
-				//cout << "QQQQQQQQ";
 				xRand = rand() %  baseSize;
 				yRand = rand() %  baseSize;
 				j = 0;
@@ -62,25 +61,18 @@ void Navigator::getRandomState()
 
 }
 
-/*
-void Navigator::nodesDistanceToRandNode()
-{
-	for (int i = 0; i < nodesList.size(); i++)
-	{
-		nodesList[i]->setDistanceToRandNode(sqrt(pow(nodesList[i]->getX() - randomNode->getX(), 2) + pow(nodesList[i]->getY() - randomNode->getY(), 2)));
-	}
-}
-*/
 
 void Navigator::getNearestNode()
 {
 	int shortestNode;
-	int minDistance = sqrt(pow(nodesList[0]->getX() - randomNode->getX(), 2) + pow(nodesList[0]->getY() - randomNode->getY(), 2));
+	int minDistance = sqrt(pow(nodesList[0]->getX() - randomNode->getX(), 2)
+		+ pow(nodesList[0]->getY() - randomNode->getY(), 2));
 	shortestNode = 0;
 
 	for (int i = 1; i < nodesList.size(); i++)
 	{
-		int tempDistance = sqrt(pow(nodesList[i]->getX() - randomNode->getX(), 2) + pow(nodesList[i]->getY() - randomNode->getY(), 2));
+		int tempDistance = sqrt(pow(nodesList[i]->getX() - randomNode->getX(), 2) 
+			+ pow(nodesList[i]->getY() - randomNode->getY(), 2));
 		if (tempDistance < minDistance)
 		{
 			minDistance = tempDistance;
@@ -92,8 +84,17 @@ void Navigator::getNearestNode()
 
 }
 
-//in tabe kasif zade shode 
-//bayad dorost she
+bool Navigator::isValidExpansion2()
+{
+	for (int i = 0; i < obstaclesList.size(); i++)
+	{
+		if (randomNode->getX() > obstaclesList[i]->getX())
+		{
+
+		}
+
+	}
+}
 bool Navigator::isValidExpansion()
 {
 	float fasele=0;
@@ -120,59 +121,53 @@ bool Navigator::isValidExpansion()
 	{
 		if (obstacleIsBetweenRandomAndNearestNodes(obstaclesList[i]))
 		{
+			cout << "  F  ";
 			fasele = abs((zaribeX * obstaclesList[i]->getX()) + (obstaclesList[i]->getY()) + c) / sqrt(pow(zaribeX, 2) + 1);
-			//momas ro ham barkhord gereftam
+		
 			if (fasele <= obstaclesList[i]->getRadius())
 			{
-			//	cout << "\n\nNA\n\n";
-
-		//		cout << "\n \n \nFASELE :" << fasele << "\n \n \n";
-				
-		//		std::cout << "random : " << (randomNode != nullptr) << endl;
-
-			//	cout << "X: " << randomNode->getX() << "  Y:   " << randomNode->getY() << endl;
-
-			//	std::cout << "nearest : " << (nearestNode != nullptr) << endl;
-
-			//	cout << "X: " << nearestNode->getX() << "  Y:   " << nearestNode->getY() << endl;
-
 				return false;
 			}
 		}
 	}
-//	cout << "\n \n \nM :" << m << "\n \n \n";
-	//cout << "\n \n \nC :" << c << "\n \n \n";
-	//cout << "\n \n \nzaribeX :" << zaribeX << "\n \n \n";
-	//cout << "\n \n \nFASELE :" << fasele << "\n \n \n";
-
-	//cout <<"\n \n \nFASELE :"<< fasele<<"\n \n \n";
-
 	return true;
 }
 
-void Navigator::goTowardsNode(int maxEdgeLength)
+bool Navigator::goTowardsNode(int maxEdgeLength)
 {
-	int distance;
-	int d;
-	//cout << "\nUUUUUUU\n";
-	distance = sqrt(pow(nearestNode->getX() - randomNode->getX(), 2) + pow(nearestNode->getY() - randomNode->getY(), 2));
-	d = maxEdgeLength;
-	//cout << "\nRRRRRRRRRRR\n";
-	if (distance == 0)
-		distance = 1;
-	newNode->setX(nearestNode->getX() + d * ((randomNode->getX() - nearestNode->getX()) / distance));
-	//cout << "\nDDDDDDD\n";
-	newNode->setY(nearestNode->getY() + d * ((randomNode->getY() - nearestNode->getY()) / distance));
-	//cout << "\nWWWWWW\n";
-	newNode->setFatherNode(this->nearestNode);
-	//cout << "\nSSSSSSSS\n";
+		int distance;
+		int d;
+
+		distance = sqrt(pow(nearestNode->getX() - randomNode->getX(), 2) + pow(nearestNode->getY() - randomNode->getY(), 2));
+		d = maxEdgeLength;
+
+		if (distance == 0)
+			distance = 1;
+		for (int i = 0; i < obstaclesList.size(); i++)
+		{
+			if ((nearestNode->getX() + d * ((randomNode->getX() - nearestNode->getX()) / distance) < obstaclesList[i]->getX() + obstaclesList[i]->getRadius()) && ((nearestNode->getX() + d * ((randomNode->getX() - nearestNode->getX()) / distance)) >= obstaclesList[i]->getX() - obstaclesList[i]->getRadius()))
+			{
+				if ((nearestNode->getY() + d * ((randomNode->getY() - nearestNode->getY()) / distance) < obstaclesList[i]->getY() + obstaclesList[i]->getRadius()) && (nearestNode->getY() + d * ((randomNode->getY() - nearestNode->getY()) / distance) >= obstaclesList[i]->getY() - obstaclesList[i]->getRadius()))
+				{
+					return false;
+				}
+			}
+		}
+		newNode->setX(nearestNode->getX() + d * ((randomNode->getX() - nearestNode->getX()) / distance));
+
+		newNode->setY(nearestNode->getY() + d * ((randomNode->getY() - nearestNode->getY()) / distance));
+
+		newNode->setFatherNode(this->nearestNode);
+
+		return true;
 }
 
 
-void Navigator::addNode()
+void Navigator::addNode(std::vector<Nodes*>&retrurnedNodeList)
 {
 	this->newNode = new Nodes(0, 0, nullptr);
 	nodesList.push_back(newNode);
+	retrurnedNodeList = this->nodesList;
 }
 
 bool Navigator::isGoalReached()
@@ -182,10 +177,6 @@ bool Navigator::isGoalReached()
 		return true;
 	else
 		return false;
-	//if (this->newNode->getX() == this->destNode->getX() && this->newNode->getY() == this->destNode->getY())
-	//{
-	//	return true;
-	//}
 }
 
 void Navigator::reverse(std::vector<Nodes*>&retrurnedPathList)
@@ -196,73 +187,32 @@ void Navigator::reverse(std::vector<Nodes*>&retrurnedPathList)
 
 	while (flagNode->getFatherNode() != nullptr)
 	{
-	//	cout << "HHHHHHHHHHHHHHHHHHHHHHH";
 		pathList.push_back(flagNode->getFatherNode());
 		flagNode = flagNode->getFatherNode();
 	}
 
 	pathList.push_back(startNode);
 
-	checkValues();
-
 	retrurnedPathList = pathList;
 }
 
-void Navigator::buildObstacles(int obstaclesNumber)
+void Navigator::buildObstacles(int obstaclesNumber, std::vector<Obstacles*>&obstaclesReturnedList)
 {
-		this->obstaclesList.push_back(new Obstacles(2,1,1));
-		this->obstaclesList.push_back(new Obstacles(45, 23, 6));
-		this->obstaclesList.push_back(new Obstacles(50, 50, 1));
-		this->obstaclesList.push_back(new Obstacles(10, 12, 2));
-		this->obstaclesList.push_back(new Obstacles(70, 32, 3));
+		this->obstaclesList.push_back(new Obstacles(22,11,3));
+		this->obstaclesList.push_back(new Obstacles(25, 33, 3));
+		this->obstaclesList.push_back(new Obstacles(50, 60, 3));
+		this->obstaclesList.push_back(new Obstacles(50, 60, 3));
+		this->obstaclesList.push_back(new Obstacles(10, 60, 3));
+		this->obstaclesList.push_back(new Obstacles(30, 42, 3));
+		this->obstaclesList.push_back(new Obstacles(40, 42, 3));
+		this->obstaclesList.push_back(new Obstacles(50, 82, 3));
+		this->obstaclesList.push_back(new Obstacles(20, 92, 3));
+		this->obstaclesList.push_back(new Obstacles(80, 42, 3));
+		this->obstaclesList.push_back(new Obstacles(30, 40, 1));
+		this->obstaclesList.push_back(new Obstacles(4, 5, 3));
 
-}
+		obstaclesReturnedList = this->obstaclesList;
 
-void Navigator::checkValues()
-{
-	std::cout << "nodelist size : " << nodesList.size()<< endl;
-	
-	for (int i = 1; i < nodesList.size(); i++)
-		cout << "X : " << nodesList[i-1]->getX() << "    Y:    " << nodesList[i-1]->getY()
-			<< "    XF : " << nodesList[i]->getFatherNode()->getX() <<"   YF :   "<< nodesList[i]->getFatherNode()->getY() << endl<<endl;// << "    Y:    " << nodesList[i]->getFatherNode() == nullptr << endl;
-	
-
-	std::cout << "obstacles size : " << obstaclesList.size() << endl;
-	
-	std::cout << "pathlist size : " << pathList.size() << endl;
-	
-	for (int i = 0; i < pathList.size(); i++)
-	{
-		cout << "X : " << pathList[i]->getX() << "    Y:    " << pathList[i]->getY() << endl;
-	}
-
-	for (int i = 0; i < obstaclesList.size(); i++)
-	{
-		cout << "\n OX : " << obstaclesList[i]->getX() << "    OY:    " << obstaclesList[i]->getY() << endl;
-	}
-
-	
-	std::cout << "random : " << (randomNode != nullptr)<<endl;
-	 
-	cout << "X: " << randomNode->getX() << "  Y:   " << randomNode->getY()<<endl;
-	
-	std::cout << "nearest : " << (nearestNode != nullptr) << endl;
-	
-	cout << "X: " << nearestNode->getX() << "  Y:   " << nearestNode->getY() << endl;
-
-	std::cout << "new  : " << (newNode != nullptr) << endl;
-	
-	cout << "X: " << newNode->getX() << "  Y:   " << newNode->getY() << endl;
-
-	std::cout << "start : " << (startNode != nullptr) << endl;
-	
-	cout << "X: " << startNode->getX() << "  Y:   " << startNode->getY()<<endl;
-	
-	std::cout << "dest : " << (destNode != nullptr) << endl;
-	
-	cout << "X: " << destNode->getX() << "  Y:   " << destNode->getY()<<endl;
-	
-	std::cout << "flag : " << (flagNode != nullptr) << endl<<endl;
 }
 
 void Navigator::setDestFather()
@@ -272,8 +222,8 @@ void Navigator::setDestFather()
 
 bool Navigator::obstacleIsBetweenRandomAndNearestNodes(Obstacles* T)
 {
-	if (T->getX() < randomNode->getX() && T->getX() > nearestNode->getX())
-		if (T->getY() < randomNode->getY() && T->getY() > nearestNode->getY())
+	if (T->getX() < nearestNode->getX() && T->getX() > nearestNode->getX())
+		if (T->getY() < nearestNode->getY() && T->getY() > nearestNode->getY())
 			return true;
 	
 	return false;
